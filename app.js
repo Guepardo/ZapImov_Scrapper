@@ -3,10 +3,7 @@ var nightmare = Nightmare({ show: true });
 var vo        = require('vo'); 
 var fs        = require('fs'); 
 
-// const URL = 'http://www.zapimoveis.com.br/venda/casas/go+goiania/'
 const URL = 'http://www.zapimoveis.com.br/venda/imoveis/go+goiania/#{"precomaximo":"2147483647","parametrosautosuggest":[{"Bairro":"","Zona":"","Cidade":"GOIANIA","Agrupamento":"","Estado":"GO"}],"pagina":"1","ordem":"Relevancia","paginaOrigem":"ResultadoBusca","semente":"1632872624","formato":"Lista"}'; 
-var list = []; 
-
 //Zap structure: 
 /*
   article#list
@@ -69,7 +66,6 @@ function evaluate(){
 }
 
 //function to interact with result function above. 
-var list = []; 
 function proccess(result){
   for(var b of result)
       fs.appendFile('./data/data_zap.txt', JSON.stringify(b)+'\n', 'utf8', (error) => console.log(error));
