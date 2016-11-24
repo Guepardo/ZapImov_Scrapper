@@ -61,16 +61,16 @@ function evaluate(){
 
       array.push(house); 
     }
-
     return array; 
 }
 
-//function to interact with result function above. 
+//function to interact with result of the function above. 
 function proccess(result){
   for(var b of result)
       fs.appendFile('./data/data_zap.txt', JSON.stringify(b)+'\n', 'utf8', (error) => console.log(error));
 }
 
+//generator function
 function* scrap(){
   yield nightmare
         .goto(URL)
@@ -84,7 +84,6 @@ function* scrap(){
     yield nightmare
           .evaluate(evaluate)
           .then(proccess); 
-    
 
     yield nightmare
     .click('#proximaPagina')
@@ -94,7 +93,7 @@ function* scrap(){
   yield nightmare.end(); 
 }
 
-
+//run
 vo(scrap)(function(err, result) {
     if (err) throw err;
 });
